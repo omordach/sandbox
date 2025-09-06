@@ -6,6 +6,7 @@
 /storage/*.key
 /storage/framework
 /storage/logs
+/storage/phpstan
 /.phpunit.result.cache
 /coverage
 /playwright-report
