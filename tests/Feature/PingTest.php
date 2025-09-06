@@ -6,5 +6,5 @@ it('is healthy', function () {
     $response = $this->get('/ping');
 
     $response->assertOk();
-    $response->assertSeeText('Application up');
+    $response->assertSeeText('pong');
 });
