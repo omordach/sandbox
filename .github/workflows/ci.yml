@@ -57,7 +57,12 @@ jobs:
       - run: npm run build
       - run: php -S 127.0.0.1:8000 -t public &
       - run: |
-          until curl -fsS http://127.0.0.1:8000/ping; do sleep 1; done
+          for i in {1..30}; do
+            curl -fsS http://127.0.0.1:8000/ping && exit 0
+            sleep 1
+          done
+          echo "Server failed to respond at /ping" >&2
+          exit 1
       - run: npx playwright test
       - uses: actions/upload-artifact@v4
         with:
