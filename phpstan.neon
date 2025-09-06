@@ -6,4 +6,6 @@ parameters:
   paths:
     - app
     - database
+  bootstrapFiles:
+    - phpstan-bootstrap.php
   tmpDir: storage/phpstan
