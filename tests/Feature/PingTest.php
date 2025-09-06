@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-it('returns pong', function () {
+it('is healthy', function () {
     $response = $this->get('/ping');
 
     $response->assertOk();
-    $response->assertSeeText('pong');
+    $response->assertSeeText('Application up');
 });
