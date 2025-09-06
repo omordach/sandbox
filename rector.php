@@ -3,9 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\DeadCode\Set\DeadCodeSetList;
-use Rector\Laravel\Set\LaravelSetList;
-use Rector\TypeDeclaration\Set\TypeDeclarationSetList;
+use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $config): void {
     $config->paths([
@@ -14,9 +12,8 @@ return static function (RectorConfig $config): void {
     ]);
 
     $config->sets([
-        LaravelSetList::LARAVEL_11,
-        TypeDeclarationSetList::TYPE_DECLARATION,
-        DeadCodeSetList::DEAD_CODE,
+        SetList::TYPE_DECLARATION,
+        SetList::DEAD_CODE,
     ]);
 
     $config->parallel();
