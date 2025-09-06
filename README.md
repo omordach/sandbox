@@ -25,7 +25,7 @@ HMR: http://localhost:5173
 
 ```bash
 composer install
-npm ci
+npm install && npm run build
 cp .env.example .env   # set DB credentials
 php artisan key:generate
 php artisan migrate
