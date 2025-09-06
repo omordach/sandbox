@@ -9,4 +9,3 @@ $app = require __DIR__.'/../bootstrap/app.php';
 $app->handleRequest(
     Illuminate\Http\Request::capture()
 );
-
