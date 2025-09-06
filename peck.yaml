@@ -1,0 +1,10 @@
+paths:
+  - app
+  - resources
+  - routes
+  - tests
+  - README.md
+checks:
+  php: true
+  markdown: true
+  identifier: true
