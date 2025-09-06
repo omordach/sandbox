@@ -11,6 +11,13 @@ return [
     'cipher' => 'AES-256-CBC',
     'providers' => [
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Database\DatabaseServiceProvider::class,
+        Illuminate\Encryption\EncryptionServiceProvider::class,
+        Illuminate\Cookie\CookieServiceProvider::class,
+        Illuminate\Session\SessionServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\Filament\AdminPanelProvider::class,
     ],

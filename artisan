@@ -1,10 +1,21 @@
+#!/usr/bin/env php
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+use Illuminate\Contracts\Console\Kernel;
 
-$app = require_once __DIR__ . '/bootstrap/app.php';
+define('LARAVEL_START', microtime(true));
 
-$app->handle(
-    $input = new Symfony\Component\Console\Input\ArgvInput(),
-    new Symfony\Component\Console\Output\ConsoleOutput()
+require __DIR__.'/vendor/autoload.php';
+
+$app = require_once __DIR__.'/bootstrap/app.php';
+
+$kernel = $app->make(Kernel::class);
+
+$status = $kernel->handle(
+    $input = new Symfony\Component\Console\Input\ArgvInput,
+    new Symfony\Component\Console\Output\ConsoleOutput
 );
+
+$kernel->terminate($input, $status);
+
+exit($status);
