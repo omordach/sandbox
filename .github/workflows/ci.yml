@@ -49,6 +49,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pgsql, pdo_pgsql, intl, gd, bcmath, pcntl
+      - uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+      - run: composer install --no-interaction --prefer-dist
+      - run: cp .env.example .env
+      - run: php artisan key:generate
+      - run: php artisan migrate --no-interaction
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
@@ -57,7 +69,12 @@ jobs:
       - run: npm run build
       - run: php -S 127.0.0.1:8000 -t public &
       - run: |
-          until curl -fsS http://127.0.0.1:8000/ping; do sleep 1; done
+          for i in {1..30}; do
+            curl -fsS http://127.0.0.1:8000/ping && exit 0
+            sleep 1
+          done
+          echo "Server failed to respond at /ping" >&2
+          exit 1
       - run: npx playwright test
       - uses: actions/upload-artifact@v4
         with:
