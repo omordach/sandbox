@@ -1,3 +1,4 @@
+[![CI](https://github.com/omordach/sandbox/actions/workflows/ci.yml/badge.svg)](https://github.com/omordach/sandbox/actions/workflows/ci.yml)
 # README
 
 ## Getting Started (Docker)
