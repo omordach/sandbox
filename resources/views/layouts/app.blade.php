@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Oleh Mordach — Certifications')</title>
     <meta name="description" content="@yield('meta_description', 'Certifications and profile of Oleh Mordach.')">
-    @if (!app()->environment('testing') && file_exists(public_path('build/manifest.json')))
-        @vite(['resources/css/app.css', 'resources/js/app.ts'])
-    @endif
+    @vite(['resources/css/app.css', 'resources/js/app.ts'])
 </head>
 <body class="bg-gray-50 text-gray-900">
 <div id="app">
