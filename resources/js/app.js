@@ -1,4 +1,5 @@
+import '../css/app.css'
 import { createApp } from 'vue'
-import Hello from './components/Hello.vue'
+import Certifications from './components/Certifications.vue'
 
-createApp(Hello).mount('#app')
+createApp(Certifications).mount('#app')
