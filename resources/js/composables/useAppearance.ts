@@ -24,7 +24,10 @@ const setCookie = (name: string, value: string, days = 365) => {
 
     const maxAge = days * 24 * 60 * 60;
 
-    document.cookie = `${name}=${value};path=/;max-age=${maxAge};SameSite=Lax`;
+    const secure = typeof window !== 'undefined' && window.location.protocol === 'https:' ? ';Secure' : '';
+
+    // HttpOnly cookies can't be set via JavaScript and must be configured server-side.
+    document.cookie = `${name}=${value};path=/;max-age=${maxAge};SameSite=Lax${secure}`;
 };
 
 const mediaQuery = () => {
