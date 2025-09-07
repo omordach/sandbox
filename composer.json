@@ -5,7 +5,7 @@
     "require": {
         "php": "^8.3",
         "laravel/framework": "^11.0",
-        "filament/filament": "^3.0",
+        "filament/filament": "^4.0",
         "inertiajs/inertia-laravel": "^2.0"
     },
     "require-dev": {
@@ -41,7 +41,8 @@
         "rector:dry": "rector --dry-run",
         "rector:apply": "rector",
         "post-autoload-dump": [
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ]
     },
     "minimum-stability": "stable",
