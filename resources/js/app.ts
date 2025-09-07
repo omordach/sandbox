@@ -1,14 +1,29 @@
-import '../css/app.css';
-import { createApp } from 'vue';
-import CopyLink from './components/CopyLink.vue';
+import '../css/app.css'
+import { createApp } from 'vue'
+import App from './App.vue'
+import CopyLink from './components/CopyLink.vue'
+import ThemeToggle from './components/ui/ThemeToggle.vue'
 
 // Progressive enhancement: mount Vue only where needed
-// Find all <copy-link> tags and mount the component on each
 document.addEventListener('DOMContentLoaded', () => {
-    const nodes = document.querySelectorAll<HTMLElement>('copy-link');
-    nodes.forEach((node) => {
-        const url = node.getAttribute('url') ?? '';
-        const app = createApp(CopyLink, { url });
-        app.mount(node);
-    });
-});
+  // Mount App.vue if #app-root exists
+  const root = document.getElementById('app-root')
+  if (root) {
+    createApp(App).mount(root)
+  }
+
+  // Mount all <copy-link> tags
+  const copyNodes = document.querySelectorAll<HTMLElement>('copy-link')
+  copyNodes.forEach((node) => {
+    const url = node.getAttribute('url') ?? ''
+    const app = createApp(CopyLink, { url })
+    app.mount(node)
+  })
+
+  // Mount all <theme-toggle> tags
+  const themeNodes = document.querySelectorAll<HTMLElement>('theme-toggle')
+  themeNodes.forEach((node) => {
+    const app = createApp(ThemeToggle)
+    app.mount(node)
+  })
+})

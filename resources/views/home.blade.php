@@ -4,7 +4,28 @@
 @section('meta_description', 'Profile and top certifications of Oleh Mordach.')
 
 @section('content')
-    <section class="mb-8">
+    <section class="py-12">
+        <div class="grid gap-8 lg:grid-cols-2 items-center">
+            <div>
+                <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Ship faster with a clean UI</h1>
+                <p class="mt-4 text-lg text-[hsl(var(--muted))]">Tokens, dark mode and accessible components out of the box.</p>
+                <div class="mt-6 flex gap-3">
+                    <a href="/certifications" class="btn-primary">Explore Certifications</a>
+                    <a href="#about" class="btn-ghost">About</a>
+                </div>
+            </div>
+            <div class="card p-6">
+                <h2 class="text-xl font-semibold">Highlights</h2>
+                <ul class="mt-4 grid gap-3">
+                    <li class="badge">Dark mode</li>
+                    <li class="badge">TypeScript</li>
+                    <li class="badge">A11y-first</li>
+                    <li class="badge">Responsive</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="mb-8">
         <div class="bg-white rounded-lg shadow-sm p-4">
             <h1 class="text-2xl font-semibold mb-2">About</h1>
             <p class="text-lg font-medium">{{ $profile['name'] ?? 'Oleh Mordach' }}</p>
@@ -50,4 +71,3 @@
         </div>
     </section>
 @endsection
-
