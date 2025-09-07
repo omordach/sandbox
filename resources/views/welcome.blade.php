@@ -19,6 +19,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 <body>
-<div id="app-root" class="min-h-screen flex flex-col"></div>
+<div id="app-root" class="min-h-screen flex flex-col bg-bg text-fg"></div>
 </body>
 </html>

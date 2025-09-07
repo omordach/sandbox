@@ -22,10 +22,10 @@
               <Button>Secondary</Button>
             </div>
           </div>
-          <Card>
+          <Card class="surface-2">
             <h2 class="text-xl font-semibold">Highlights</h2>
             <ul class="mt-4 grid gap-3">
-              <li class="badge">Dark mode</li>
+              <li class="badge">Dark mode tuned</li>
               <li class="badge">TypeScript</li>
               <li class="badge">A11y-first</li>
               <li class="badge">Responsive</li>
@@ -47,4 +47,3 @@ import ThemeToggle from './components/ui/ThemeToggle.vue'
 import Button from './components/ui/Button.vue'
 import Card from './components/ui/Card.vue'
 </script>
-

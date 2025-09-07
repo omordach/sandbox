@@ -2,7 +2,7 @@
   <label class="inline-flex items-center gap-2">
     <input
       type="checkbox"
-      class="rounded-md border-[hsl(var(--border))] text-[hsl(var(--brand))] focus:ring-[hsl(var(--brand))]"
+      class="rounded-md border-[hsl(var(--border))] text-[hsl(var(--primary))] focus:ring-[hsl(var(--ring))]"
       :checked="modelValue"
       @change="onChange"
       v-bind="$attrs"
@@ -18,4 +18,3 @@ function onChange(e: Event) {
   emit('update:modelValue', t.checked)
 }
 </script>
-

@@ -1,0 +1,3 @@
+/* Optional: more visible focus for keyboard users */
+:root.keyboard-nav *:focus { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+

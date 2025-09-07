@@ -1,4 +1,5 @@
 import '../css/app.css'
+import './styles/a11y.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import CopyLink from './components/CopyLink.vue'
@@ -35,4 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     el.style.width = '100%'
     el.style.height = '100%'
   })
+})
+
+// Optional: set keyboard-nav class when using Tab
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Tab') document.documentElement.classList.add('keyboard-nav')
 })
