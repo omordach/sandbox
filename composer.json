@@ -40,7 +40,9 @@
         "peck": "peck",
         "rector:dry": "rector --dry-run",
         "rector:apply": "rector",
-        "post-autoload-dump": "Illuminate\\\\Foundation\\\\ComposerScripts::postAutoloadDump"
+        "post-autoload-dump": [
+            "@php artisan package:discover --ansi"
+        ]
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
