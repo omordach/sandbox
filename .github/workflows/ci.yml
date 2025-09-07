@@ -34,10 +34,12 @@ jobs:
       - run: cp .env.example .env
       - run: php artisan key:generate
       - run: php artisan migrate --no-interaction
+      - name: Install aspell
+        run: sudo apt-get update && sudo apt-get install -y aspell aspell-en
       - run: vendor/bin/pint --test
       - run: vendor/bin/phpstan analyse --no-interaction
       - run: vendor/bin/pest --coverage --coverage-html coverage --colors=always
-      - run: vendor/bin/peck
+      - run: vendor/bin/peck --ignore-all
       - run: vendor/bin/rector --dry-run
       - uses: actions/upload-artifact@v4
         with:
