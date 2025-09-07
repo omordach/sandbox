@@ -6,16 +6,18 @@ use App\Filament\Resources\CertificationResource\Pages;
 use App\Helpers\Credly;
 use App\Models\Certification;
 use BackedEnum;
-use Filament\Forms;
+use Filament\Actions;
+use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
-use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TernaryFilter;
@@ -54,10 +56,10 @@ class CertificationResource extends Resource
                             ->helperText('Paste your Credly share URL')
                             ->url()
                             ->suffixAction(
-                                Forms\Components\Actions\Action::make('fetchEmbed')
+                                Action::make('fetchEmbed')
                                     ->label('Fetch embed')
                                     ->icon('heroicon-o-arrow-down-tray')
-                                    ->action(function (Forms\Get $get, Forms\Set $set) {
+                                    ->action(function (Get $get, Set $set) {
                                         $url = (string) ($get('credly_url') ?? '');
                                         $iframe = Credly::iframeFromUrl($url);
                                         if (! $iframe) {
@@ -108,13 +110,13 @@ class CertificationResource extends Resource
                 TernaryFilter::make('is_published')->label('Published')->boolean(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\ViewAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->reorderable('sort_order');

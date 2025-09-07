@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use App\Helpers\Sanitize;
+use Database\Factories\CertificationFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+/**
+ * @property-read string $embed_html_safe
+ */
 class Certification extends Model
 {
+    /** @use HasFactory<CertificationFactory> */
     use HasFactory, HasUlids;
 
     protected $guarded = [];
@@ -21,6 +26,10 @@ class Certification extends Model
     ];
 
     // Scopes
+    /**
+     * @param  Builder<Certification>  $query
+     * @return Builder<Certification>
+     */
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('is_published', true);
