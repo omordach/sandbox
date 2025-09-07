@@ -7,7 +7,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/ping', fn () => 'pong');
+Route::get('/ping', fn () => 'pong')->middleware('throttle:60,1');
 Route::view('/dashboard', 'welcome')->middleware('auth')->name('dashboard');
 
 Route::get('/certifications', [CertificationController::class, 'index'])->name('certifications.index');

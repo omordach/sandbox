@@ -63,9 +63,14 @@ jobs:
       - run: cp .env.example .env
       - run: php artisan key:generate
       - run: php artisan migrate --no-interaction
+      - run: mkdir -p storage/framework/cache/data
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
       - run: npm ci
       - run: npx playwright install --with-deps
       - run: npm run build
