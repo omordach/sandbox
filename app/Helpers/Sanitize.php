@@ -29,23 +29,22 @@ class Sanitize
             'src', 'width', 'height', 'allow', 'referrerpolicy', 'frameborder', 'title',
         ];
 
-        // Remove all elements that are not <iframe>
-        $toRemove = [];
-        foreach ($dom->getElementsByTagName('*') as $el) {
-            if ($el->tagName !== 'iframe') {
-                $toRemove[] = $el;
-            }
-        }
-        foreach ($toRemove as $el) {
-            $el->parentNode?->removeChild($el);
+        // Find the first iframe
+        $iframes = $dom->getElementsByTagName('iframe');
+        if ($iframes->length === 0) {
+            return '';
         }
 
-        // Sanitize attributes on remaining iframes
-        foreach ($dom->getElementsByTagName('iframe') as $iframe) {
-            if (!$iframe instanceof DOMElement) {
-                continue;
-            }
+        // Work with a dedicated output document containing only the iframe
+        $out = new DOMDocument('1.0', 'UTF-8');
+        libxml_use_internal_errors(true);
+        /** @var DOMElement $iframe */
+        $iframe = $iframes->item(0);
+        $iframe = $out->importNode($iframe, true);
+        $out->appendChild($iframe);
+        libxml_clear_errors();
 
+        if ($iframe instanceof DOMElement) {
             // Remove disallowed attributes
             $attrsToRemove = [];
             if ($iframe->hasAttributes()) {
@@ -62,9 +61,7 @@ class Sanitize
             // Ensure src is present and uses http(s)
             $src = trim((string) $iframe->getAttribute('src'));
             if ($src === '' || !preg_match('/^https?:\/\//i', $src)) {
-                // Remove unsafe iframe entirely
-                $iframe->parentNode?->removeChild($iframe);
-                continue;
+                return '';
             }
 
             // Normalize numeric width/height if provided
@@ -94,11 +91,6 @@ class Sanitize
             }
         }
 
-        // Export the sanitized fragment
-        $sanitized = $dom->saveHTML();
-        // If DOM produced wrapper <html><body>, strip them (defensive)
-        $sanitized = preg_replace('/^<!DOCTYPE.+?>/i', '', (string) $sanitized);
-        $sanitized = preg_replace('/<\/?(?:html|body)>/i', '', (string) $sanitized);
-        return trim((string) $sanitized);
+        return trim((string) $out->saveHTML());
     }
 }
