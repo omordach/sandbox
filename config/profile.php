@@ -10,4 +10,3 @@ return [
         ['label' => 'GitHub', 'url' => 'https://github.com/'],
     ],
 ];
-

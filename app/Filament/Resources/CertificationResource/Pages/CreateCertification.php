@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\CertificationResource\Pages;
 
 use App\Filament\Resources\CertificationResource;
-use Illuminate\Support\Str;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Str;
 
 class CreateCertification extends CreateRecord
 {
@@ -19,4 +19,3 @@ class CreateCertification extends CreateRecord
         return $data;
     }
 }
-

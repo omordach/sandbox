@@ -9,4 +9,3 @@ class ViewCertification extends ViewRecord
 {
     protected static string $resource = CertificationResource::class;
 }
-

@@ -49,7 +49,7 @@ class Sanitize
             $attrsToRemove = [];
             if ($iframe->hasAttributes()) {
                 foreach ($iframe->attributes as $attr) {
-                    if (!in_array(strtolower($attr->name), $allowedAttributes, true)) {
+                    if (! in_array(strtolower($attr->name), $allowedAttributes, true)) {
                         $attrsToRemove[] = $attr->name;
                     }
                 }
@@ -60,7 +60,7 @@ class Sanitize
 
             // Ensure src is present and uses http(s)
             $src = trim((string) $iframe->getAttribute('src'));
-            if ($src === '' || !preg_match('/^https?:\/\//i', $src)) {
+            if ($src === '' || ! preg_match('/^https?:\/\//i', $src)) {
                 return '';
             }
 
@@ -80,13 +80,13 @@ class Sanitize
             if ($iframe->hasAttribute('referrerpolicy')) {
                 $policy = strtolower(trim((string) $iframe->getAttribute('referrerpolicy')));
                 $allowedPolicies = ['no-referrer', 'strict-origin-when-cross-origin', 'origin', 'origin-when-cross-origin'];
-                if (!in_array($policy, $allowedPolicies, true)) {
+                if (! in_array($policy, $allowedPolicies, true)) {
                     $iframe->setAttribute('referrerpolicy', 'no-referrer');
                 }
             }
 
             // Ensure title for accessibility
-            if (!$iframe->hasAttribute('title')) {
+            if (! $iframe->hasAttribute('title')) {
                 $iframe->setAttribute('title', 'Credly badge');
             }
         }

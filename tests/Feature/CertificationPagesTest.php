@@ -47,7 +47,7 @@ it('shows certification detail by slug', function () {
         'sort_order' => 0,
     ]);
 
-    $this->get('/certifications/' . $cert->slug)
+    $this->get('/certifications/'.$cert->slug)
         ->assertOk()
         ->assertSee('Kubernetes Admin');
 });
@@ -71,4 +71,3 @@ it('sanitizes embed_html to only iframe', function () {
         ->not->toContain('onload')
         ->not->toContain('style=');
 });
-
