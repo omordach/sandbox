@@ -6,11 +6,12 @@ use App\Helpers\Sanitize;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Support\Str;
 
 class Certification extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUlids;
 
     protected $guarded = [];
 
@@ -76,4 +77,3 @@ class Certification extends Model
         return $slug;
     }
 }
-
