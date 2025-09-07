@@ -6,7 +6,7 @@
 @section('content')
     <a href="{{ route('certifications.index') }}" class="text-blue-600 hover:underline">&larr; Back to certifications</a>
 
-    <div class="bg-white rounded-lg shadow-sm p-6 mt-4">
+    <div class="card p-6 mt-4">
         <h1 class="text-2xl font-semibold">{{ $cert->title }}</h1>
         @if($cert->issuer)
             <div class="text-gray-700 mt-1">{{ $cert->issuer }}</div>
@@ -16,7 +16,9 @@
         @endif
 
         <div class="mt-6 flex justify-center">
-            {!! \App\Helpers\Credly::iframeFromUrl($cert->credly_url, 300, 300) ?: $cert->embedHtmlSafe() !!}
+            <div class="cert-embed max-w-sm w-full">
+                {!! $cert->embedHtmlSafe() ?: (\App\Helpers\Credly::iframeFromUrl($cert->credly_url, 300, 300) ?? '') !!}
+            </div>
         </div>
 
         @if($cert->credly_url)
@@ -27,4 +29,3 @@
         @endif
     </div>
 @endsection
-

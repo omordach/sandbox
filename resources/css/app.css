@@ -48,4 +48,7 @@
   .badge-warning { @apply badge text-amber-800 bg-amber-50 dark:text-amber-300 dark:bg-amber-900/30 border-transparent; }
   .badge-danger { @apply badge text-rose-700 bg-rose-50 dark:text-rose-300 dark:bg-rose-900/30 border-transparent; }
   .badge-accent { @apply badge text-violet-700 bg-violet-50 dark:text-violet-300 dark:bg-violet-900/30 border-transparent; }
+  /* Responsive Credly badge iframe container */
+  .cert-embed { aspect-ratio: 1 / 1; @apply w-full overflow-hidden; }
+  .cert-embed iframe { width: 100% !important; height: 100% !important; border: 0; }
 }

@@ -26,4 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const app = createApp(ThemeToggle)
     app.mount(node)
   })
+
+  // Enhance embedded certification iframes
+  document.querySelectorAll<HTMLIFrameElement>('.cert-embed iframe').forEach((el) => {
+    el.setAttribute('loading', 'lazy')
+    el.setAttribute('width', '100%')
+    el.setAttribute('height', '100%')
+    el.style.width = '100%'
+    el.style.height = '100%'
+  })
 })
