@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Oleh Mordach — Certifications')</title>
     <meta name="description" content="@yield('meta_description', 'Certifications and profile of Oleh Mordach.')">
-    @vite(['resources/css/app.css', 'resources/js/app.ts'])
+    @if (!app()->environment('testing'))
+        @vite(['resources/css/app.css', 'resources/js/app.ts'])
+    @endif
 </head>
 <body class="bg-gray-50 text-gray-900">
 <div id="app">
@@ -30,4 +32,3 @@
 </div>
 </body>
 </html>
-
