@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Certification;
 use Illuminate\View\View;
+use Throwable;
 
 class HomeController extends Controller
 {
@@ -11,12 +12,16 @@ class HomeController extends Controller
     {
         $profile = config('profile');
 
-        $certifications = Certification::query()
-            ->published()
-            ->orderBy('sort_order', 'asc')
-            ->orderByDesc('issued_at')
-            ->limit(6)
-            ->get();
+        try {
+            $certifications = Certification::query()
+                ->published()
+                ->orderBy('sort_order', 'asc')
+                ->orderByDesc('issued_at')
+                ->limit(6)
+                ->get();
+        } catch (Throwable $e) {
+            $certifications = collect();
+        }
 
         return view('home', [
             'profile' => $profile,
