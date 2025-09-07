@@ -56,6 +56,8 @@ services:
       - node_modules:/var/www/html/node_modules
     ports:
       - "5173:5173"
+    environment:
+      HMR_HOST: ${HMR_HOST:-localhost}
     depends_on:
       - app
 
