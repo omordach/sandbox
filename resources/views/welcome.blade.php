@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Laravel + Vue</title>
-    @vite('resources/js/app.js')
+    @vite('resources/js/app.ts')
 </head>
 <body>
 <div id="app"></div>
