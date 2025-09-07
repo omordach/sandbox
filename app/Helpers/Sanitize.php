@@ -26,7 +26,7 @@ class Sanitize
         libxml_clear_errors();
 
         $allowedAttributes = [
-            'src', 'width', 'height', 'allow', 'referrerpolicy', 'frameborder',
+            'src', 'width', 'height', 'allow', 'referrerpolicy', 'frameborder', 'title',
         ];
 
         // Remove all elements that are not <iframe>
@@ -87,6 +87,11 @@ class Sanitize
                     $iframe->setAttribute('referrerpolicy', 'no-referrer');
                 }
             }
+
+            // Ensure title for accessibility
+            if (!$iframe->hasAttribute('title')) {
+                $iframe->setAttribute('title', 'Credly badge');
+            }
         }
 
         // Export the sanitized fragment
@@ -97,4 +102,3 @@ class Sanitize
         return trim((string) $sanitized);
     }
 }
-

@@ -46,7 +46,7 @@ class Credly
 
         $src = sprintf('https://www.credly.com/embedded_badge/%s', $uuid);
         $iframe = sprintf(
-            '<iframe src="%s" width="%d" height="%d" frameborder="0" scrolling="no" referrerpolicy="no-referrer"></iframe>',
+            '<iframe src="%s" width="%d" height="%d" frameborder="0" scrolling="no" referrerpolicy="no-referrer" title="Credly badge"></iframe>',
             $src,
             max(0, $width),
             max(0, $height)
@@ -56,4 +56,3 @@ class Credly
         return Sanitize::iframe($iframe);
     }
 }
-
