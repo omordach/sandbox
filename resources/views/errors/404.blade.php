@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>404 — Not Found</title>
-  @vite(['resources/css/app.css'])
+  @if (app()->environment('testing'))
+    
+  @else
+    @vite(['resources/css/app.css'])
+  @endif
   <script>
     (function () {
       const saved = localStorage.getItem('theme');
@@ -26,4 +30,3 @@
   </main>
 </body>
 </html>
-

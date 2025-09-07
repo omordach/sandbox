@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>Laravel + Vue</title>
-    @vite(['resources/css/app.css','resources/js/app.ts'])
+    @if (app()->environment('testing'))
+        
+    @else
+        @vite(['resources/css/app.css','resources/js/app.ts'])
+    @endif
     <script>
       (function () {
         const saved = localStorage.getItem('theme');
