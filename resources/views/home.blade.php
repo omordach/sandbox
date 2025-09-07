@@ -26,7 +26,7 @@
         </div>
     </section>
     <section id="about" class="mb-8">
-        <div class="bg-white rounded-lg shadow-sm p-4">
+        <div class="bg-[hsl(var(--surface-1))] rounded-lg shadow-sm p-4">
             <h1 class="text-2xl font-semibold mb-2">About</h1>
             <p class="text-lg font-medium">{{ $profile['name'] ?? 'Oleh Mordach' }}</p>
             <p class="text-gray-700">{{ $profile['role'] ?? '' }}</p>
