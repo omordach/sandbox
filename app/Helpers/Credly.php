@@ -40,7 +40,7 @@ class Credly
     public static function iframeFromUrl(?string $url, int $width = 150, int $height = 150): ?string
     {
         $uuid = static::parseUuid($url);
-        if (!$uuid) {
+        if (! $uuid) {
             return null;
         }
 

@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\CertificationResource\Pages;
 
 use App\Filament\Resources\CertificationResource;
-use Illuminate\Support\Str;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Str;
 
 class EditCertification extends EditRecord
 {
@@ -19,4 +19,3 @@ class EditCertification extends EditRecord
         return $data;
     }
 }
-

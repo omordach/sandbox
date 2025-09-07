@@ -8,8 +8,8 @@ use App\Models\Certification;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Resources\Form;
@@ -25,6 +25,7 @@ class CertificationResource extends Resource
     protected static ?string $model = Certification::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?string $navigationGroup = 'Content';
 
     public static function form(Form $form): Form
@@ -57,12 +58,13 @@ class CertificationResource extends Resource
                                     ->action(function (Forms\Get $get, Forms\Set $set) {
                                         $url = (string) ($get('credly_url') ?? '');
                                         $iframe = Credly::iframeFromUrl($url);
-                                        if (!$iframe) {
+                                        if (! $iframe) {
                                             Notification::make()
                                                 ->title('Invalid Credly URL')
                                                 ->body('Please paste a valid Credly public badge URL.')
                                                 ->danger()
                                                 ->send();
+
                                             return;
                                         }
                                         $set('embed_html', $iframe);
@@ -126,4 +128,3 @@ class CertificationResource extends Resource
         ];
     }
 }
-
