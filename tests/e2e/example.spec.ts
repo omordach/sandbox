@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('homepage loads', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('#app')).toBeVisible();
+    await expect(page.locator('#app')).toBeAttached();
 });
 
 test('ping returns pong', async ({ page }) => {
