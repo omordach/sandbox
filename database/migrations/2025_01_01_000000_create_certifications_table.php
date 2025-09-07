@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('certifications', function (Blueprint $table) {
+        Schema::create('certifications', function (Blueprint $table): void {
             $table->ulid('id')->primary();
             $table->string('title');
             $table->string('issuer')->nullable();

@@ -13,7 +13,7 @@ class Sanitize
      */
     public static function iframe(?string $html): string
     {
-        $html = (string) ($html ?? '');
+        $html = $html ?? '';
         $html = trim($html);
         if ($html === '') {
             return '';
@@ -59,7 +59,7 @@ class Sanitize
             }
 
             // Ensure src is present and uses http(s)
-            $src = trim((string) $iframe->getAttribute('src'));
+            $src = trim($iframe->getAttribute('src'));
             if ($src === '' || ! preg_match('/^https?:\/\//i', $src)) {
                 return '';
             }
@@ -67,7 +67,7 @@ class Sanitize
             // Normalize numeric width/height if provided
             foreach (['width', 'height', 'frameborder'] as $dim) {
                 if ($iframe->hasAttribute($dim)) {
-                    $val = preg_replace('/[^0-9]/', '', (string) $iframe->getAttribute($dim));
+                    $val = preg_replace('/[^0-9]/', '', $iframe->getAttribute($dim));
                     if ($val === '') {
                         $iframe->removeAttribute($dim);
                     } else {
@@ -78,7 +78,7 @@ class Sanitize
 
             // Normalize referrerpolicy to known safe value if given
             if ($iframe->hasAttribute('referrerpolicy')) {
-                $policy = strtolower(trim((string) $iframe->getAttribute('referrerpolicy')));
+                $policy = strtolower(trim($iframe->getAttribute('referrerpolicy')));
                 $allowedPolicies = ['no-referrer', 'strict-origin-when-cross-origin', 'origin', 'origin-when-cross-origin'];
                 if (! in_array($policy, $allowedPolicies, true)) {
                     $iframe->setAttribute('referrerpolicy', 'no-referrer');

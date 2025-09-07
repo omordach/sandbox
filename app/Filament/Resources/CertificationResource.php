@@ -59,7 +59,7 @@ class CertificationResource extends Resource
                                 Action::make('fetchEmbed')
                                     ->label('Fetch embed')
                                     ->icon('heroicon-o-arrow-down-tray')
-                                    ->action(function (Get $get, Set $set) {
+                                    ->action(function (Get $get, Set $set): void {
                                         $url = (string) ($get('credly_url') ?? '');
                                         $iframe = Credly::iframeFromUrl($url);
                                         if (! $iframe) {
